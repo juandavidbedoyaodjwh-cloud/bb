@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mapu ❤️</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Elegant Calligraphy -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti for magical interactive effects -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        /* Custom Font Assignments */
+        .font-calligraphy {
+            font-family: 'Dancing Script', cursive;
+        }
+        .font-handwriting {
+            font-family: 'Caveat', cursive;
+        }
+        .font-body {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        /* Romantic Soft Background Gradient Animation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animated-bg {
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #feada6, #f5efef);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        /* Floating Animation for Flowers */
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translateY(-20px) rotate(8deg) scale(1.05);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+        }
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        .floating-delayed {
+            animation: float 5s ease-in-out 1.5s infinite;
+        }
+        .floating-reverse {
+            animation: float 4.5s ease-in-out 0.8s infinite reverse;
+        }
+
+        /* Falling Petals Background Canvas Styling */
+        #petal-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Pulse Heart Animation */
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        .pulse-heart {
+            animation: heartPulse 1.8s infinite;
+        }
+
+        /* Glowing card effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(225, 100, 130, 0.2);
+        }
+
+        /* Modal Transition Effects */
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .modal-enter-active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Flower Garden Bloom Animations */
+        @keyframes bloom {
+            0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        .blooming-flower {
+            animation: bloom 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+    </style>
+</head>
+<body class="animated-bg min-h-screen font-body flex flex-col justify-between items-center relative overflow-x-hidden text-slate-800 select-none">
+
+    <!-- Ambient Floating Petals Canvas -->
+    <canvas id="petal-canvas"></canvas>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-md mx-auto px-6 py-8 flex flex-col items-center justify-center min-h-screen text-center z-20 relative">
+        
+        <!-- Top Floral Bouquet Illustration (SVG Icons) -->
+        <div class="relative w-full flex justify-center items-center my-4 h-44">
+            <!-- Left Flower -->
+            <div class="absolute left-6 md:left-10 top-4 floating-reverse blooming-flower" style="animation-delay: 0.2s;">
+                <svg class="w-20 h-20 text-rose-400 drop-shadow-md" viewBox="0 0 100 100" fill="currentColor">
+                    <circle cx="50" cy="25" r="18" fill="#fda4af"/>
+                    <circle cx="75" cy="50" r="18" fill="#f43f5e"/>
+                    <circle cx="50" cy="75" r="18" fill="#fda4af"/>
+                    <circle cx="25" cy="50" r="18" fill="#f43f5e"/>
+                    <circle cx="50" cy="50" r="14" fill="#fbbf24"/>
+                </svg>
+            </div>
+
+            <!-- Center Primary Flower -->
+            <div class="z-10 floating blooming-flower">
+                <svg class="w-28 h-28 text-pink-500 drop-shadow-lg" viewBox="0 0 100 100" fill="currentColor">
+                    <g fill="#e11d48">
+                        <path d="M50 15 C40 0, 20 10, 30 30 C10 20, 0 40, 15 50 C0 60, 10 80, 30 70 C20 90, 40 100, 50 85 C60 100, 80 90, 70 70 C90 80, 100 60, 85 50 C100 40, 90 20, 70 30 C80 10, 60 0, 50 15 Z" />
+                    </g>
+                    <circle cx="50" cy="50" r="16" fill="#fef08a"/>
+                    <circle cx="50" cy="50" r="10" fill="#f59e0b"/>
+                </svg>
+            </div>
+
+            <!-- Right Flower -->
+            <div class="absolute right-6 md:right-10 top-4 floating-delayed blooming-flower" style="animation-delay: 0.4s;">
+                <svg class="w-20 h-20 text-pink-400 drop-shadow-md" viewBox="0 0 100 100" fill="currentColor">
+                    <circle cx="50" cy="25" r="18" fill="#f472b6"/>
+                    <circle cx="75" cy="50" r="18" fill="#db2777"/>
+                    <circle cx="50" cy="75" r="18" fill="#f472b6"/>
+                    <circle cx="25" cy="50" r="18" fill="#db2777"/>
+                    <circle cx="50" cy="50" r="14" fill="#fde047"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Title Display "Para Mapu" -->
+        <div class="glass-card rounded-3xl p-8 my-4 w-full transform transition duration-500 hover:scale-105 cursor-pointer shadow-xl border border-white/60" id="card-trigger" onclick="openMessage()">
+            
+            <div class="inline-block px-4 py-1 rounded-full bg-rose-100 text-rose-600 text-sm font-semibold tracking-wide uppercase mb-3 shadow-inner">
+                <i class="fa-solid fa-sparkles mr-1"></i> Algo especial
+            </div>
+
+            <h1 class="font-calligraphy text-6xl md:text-7xl text-rose-600 leading-tight drop-shadow-sm font-bold tracking-wide">
+                Para Mapu
+            </h1>
+
+            <div class="w-16 h-1 bg-gradient-to-r from-pink-300 via-rose-500 to-pink-300 rounded-full mx-auto my-4"></div>
+
+            <p class="text-slate-600 text-sm md:text-base font-medium flex items-center justify-center gap-2">
+                Haz clic en la cartita para abrir <i class="fa-solid fa-heart text-rose-500 pulse-heart"></i>
+            </p>
+
+            <!-- Interactive Heart Envelope Icon -->
+            <button id="gift-btn" class="mt-6 w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold text-lg shadow-lg hover:shadow-rose-300/50 transition-all duration-300 flex items-center justify-center gap-3 group">
+                <i class="fa-solid fa-envelope-open-heart text-2xl group-hover:scale-125 transition-transform duration-300"></i>
+                <span>Toca aquí</span>
+            </button>
+        </div>
+
+        <!-- Decorative Floral Ring Bottom -->
+        <div class="flex justify-center items-center gap-4 my-2 text-rose-300">
+            <i class="fa-solid fa-flower-tulip text-xl floating"></i>
+            <i class="fa-solid fa-heart text-rose-400 text-xs"></i>
+            <i class="fa-solid fa-flower text-2xl floating-delayed"></i>
+            <i class="fa-solid fa-heart text-rose-400 text-xs"></i>
+            <i class="fa-solid fa-flower-tulip text-xl floating-reverse"></i>
+        </div>
+
+    </main>
+
+    <!-- Modal Message Container -->
+    <div id="modal-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        
+        <div id="modal-card" class="glass-card bg-white/90 rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl relative modal-enter border-2 border-rose-200">
+            
+            <!-- Close Button -->
+            <button onclick="closeMessage()" class="absolute top-4 right-4 w-9 h-9 bg-rose-50 text-rose-500 rounded-full flex items-center justify-center hover:bg-rose-100 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Animated Lips / Kiss Icon -->
+            <div class="w-20 h-20 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4 text-rose-500 text-4xl shadow-inner pulse-heart">
+                💋
+            </div>
+
+            <h2 class="font-calligraphy text-4xl text-rose-600 font-bold mb-3">
+                ¡Un Besote!
+            </h2>
+
+            <p class="font-handwriting text-3xl md:text-4xl text-slate-800 leading-snug my-4 font-semibold px-2">
+                "Te mando un beso, ya con ganas de verte"
+            </p>
+
+            <div class="my-6 border-t border-rose-100 relative flex justify-center">
+                <span class="bg-white px-3 -mt-3 text-rose-400 text-sm">
+                    <i class="fa-solid fa-heart"></i>
+                </span>
+            </div>
+
+            <!-- Action button inside modal -->
+            <button onclick="closeMessage(); launchHearts();" class="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-pink-400 to-rose-400 text-white font-bold text-base shadow-md hover:opacity-90 transition-opacity">
+                ¡Mándame otro beso! 💖
+            </button>
+        </div>
+    </div>
+
+    <!-- Script for Visual Effects & Animations -->
+    <script>
+        // Modal Control Functions
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalCard = document.getElementById('modal-card');
+
+        function openMessage() {
+            modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            modalCard.classList.add('modal-enter-active');
+            launchConfetti();
+        }
+
+        function closeMessage() {
+            modalOverlay.classList.add('opacity-0', 'pointer-events-none');
+            modalCard.classList.remove('modal-enter-active');
+        }
+
+        // Trigger Confetti effect with hearts & warm colors
+        function launchConfetti() {
+            const count = 200;
+            const defaults = {
+                origin: { y: 0.7 }
+            };
+
+            function fire(particleRatio, opts) {
+                confetti({
+                    ...defaults,
+                    ...opts,
+                    particleCount: Math.floor(count * particleRatio)
+                });
+            }
+
+            fire(0.25, {
+                spread: 26,
+                startVelocity: 55,
+                colors: ['#f43f5e', '#fb7185', '#fda4af']
+            });
+            fire(0.2, {
+                spread: 60,
+                colors: ['#ff69b4', '#ff1493', '#ffb6c1']
+            });
+            fire(0.35, {
+                spread: 100,
+                decay: 0.91,
+                scalar: 0.8
+            });
+            fire(0.1, {
+                spread: 120,
+                startVelocity: 25,
+                decay: 0.92,
+                colors: ['#ffe4e6', '#f472b6']
+            });
+        }
+
+        function launchHearts() {
+            confetti({
+                particleCount: 40,
+                spread: 360,
+                startVelocity: 30,
+                colors: ['#e11d48', '#f43f5e', '#fb7185'],
+                shapes: ['circle'],
+                scalar: 1.2
+            });
+        }
+
+        // Floating Flowers Canvas Animation Script
+        const canvas = document.getElementById('petal-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        // Petal Particles Definition
+        class Petal {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height - height;
+                this.size = Math.random() * 12 + 8;
+                this.speedY = Math.random() * 1.5 + 0.8;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.angle = Math.random() * 360;
+                this.spin = Math.random() * 2 - 1;
+                this.color = ['#fda4af', '#f472b6', '#f43f5e', '#fecdd3'][Math.floor(Math.random() * 4)];
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y * 0.01) + this.speedX;
+                this.angle += this.spin;
+
+                if (this.y > height + 20) {
+                    this.y = -20;
+                    this.x = Math.random() * width;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.angle * Math.PI) / 180);
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                // Draw petal shape
+                ctx.ellipse(0, 0, this.size, this.size / 2, 0, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        const petals = Array.from({ length: 30 }, () => new Petal());
+
+        function animatePetals() {
+            ctx.clearRect(0, 0, width, height);
+            petals.forEach(petal => {
+                petal.update();
+                petal.draw();
+            });
+            requestAnimationFrame(animatePetals);
+        }
+
+        // Start animation loop on window load
+        window.onload = function () {
+            animatePetals();
+        };
+    </script>
+</body>
+</html>
